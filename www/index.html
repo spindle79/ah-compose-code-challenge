@@ -26,12 +26,38 @@
     <meta name="author" content="Adam Harris" />
 
     <meta name="email" content="adam@lastrev.com" />
+
+    <script>
+      const button = document.getElementById('ccc-vote');
+      const count = document.getElementById('ccc-vote-count');
+      if (button) {
+        button.addEventListener('click', async (event) => {
+          try {
+            const response = await fetch('/api/count', {
+              method: 'POST',
+            });
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            count.textContent = await response.text();
+          } catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+            count.textContent = 'Error';
+          }
+        });
+      } else {
+        console.error('Button element not found');
+      }
+    </script>
   </head>
 
   <body>
     <partial name="header"></partial>
 
     <main>
+      <partial name="step-1"></partial>
+      <partial name="step-2"></partial>
+
       <netlify-edge-include
         href="https://compose-challenge.netlify.app/partials/add-image-cdn"
       ></netlify-edge-include>
@@ -41,9 +67,6 @@
       <netlify-edge-include href="https://compose-challenge.netlify.app/partials/more-info">
       </netlify-edge-include>
 
-      <partial name="step-1"></partial>
-      <partial name="step-2"></partial>
-
       <section>
         <div class="panel">
           <button id="ccc-vote">Pick me, pick me!</button>
@@ -52,7 +75,6 @@
             <b id="ccc-vote-count">0</b>
           </div>
         </div>
-        <!-- TODO: Add some JavaScript to handle the clicks and post to the blob store API function -->
       </section>
 
       <section class="image-row">
