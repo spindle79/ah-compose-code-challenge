@@ -26,17 +26,6 @@
     <meta name="author" content="Adam Harris" />
 
     <meta name="email" content="adam@lastrev.com" />
-
-    <script>
-      const button = document.getElementById('ccc-vote');
-      const count = document.getElementById('ccc-vote-count');
-      button.addEventListener('click', async (event) => {
-        const response = await fetch('/api/count', {
-          method: 'POST',
-        });
-        count.textContent = await response.text();
-      });
-    </script>
   </head>
 
   <body>
