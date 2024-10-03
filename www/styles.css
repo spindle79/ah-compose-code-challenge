@@ -23,6 +23,21 @@ section img {
   max-width: 54rem;
 }
 
+/* New styles for the image section */
+.image-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.image-row img {
+  flex: 1;
+  object-fit: cover;
+  margin-bottom: 0;
+  max-width: calc((100% - 2rem) / 3);
+}
+
 h2 {
   padding: 0;
   margin-bottom: 1.5rem;
