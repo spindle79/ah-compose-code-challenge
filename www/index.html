@@ -26,6 +26,17 @@
     <meta name="author" content="Adam Harris" />
 
     <meta name="email" content="adam@lastrev.com" />
+
+    <script>
+      const button = document.getElementById('ccc-vote');
+      const count = document.getElementById('ccc-vote-count');
+      button.addEventListener('click', async (event) => {
+        const response = await fetch('/api/count', {
+          method: 'POST',
+        });
+        count.textContent = await response.text();
+      });
+    </script>
   </head>
 
   <body>
@@ -41,7 +52,16 @@
       <partial name="step-1"></partial>
       <partial name="step-2"></partial>
 
-      <!-- This looks like a good place for an edge include. -->
+      <section>
+        <div class="panel">
+          <button id="ccc-vote">Pick me, pick me!</button>
+          <div>
+            <span>Count:</span>
+            <b id="ccc-vote-count">0</b>
+          </div>
+        </div>
+        <!-- TODO: Add some JavaScript to handle the clicks and post to the blob store API function -->
+      </section>
 
       <section class="image-row">
         <img src="/images/bay-bridge.jpg" alt="A photo of the Bay Bridge in San Francisco" />
